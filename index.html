@@ -5,12 +5,100 @@
         <title>Leaflet Page</title>
 
         <!-- Leaflet CSS -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="crossorigin=""/>
+        <link rel="stylesheet" href="leaflet.css"/>
 
         <!-- Leaflet JS -->
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="crossorigin=""></script>
+        <script src="leaflet.js"></script>
     </head>
     <body>
-    
+        <div id="mapid" style="height: 600px;"></div>
+
+        <script>
+
+            // Kaart lagen aanmaken
+            var backgroundLayer = L.tileLayer('https://geodata.nationaalgeoregister.nl/tiles/service/wmts/brtachtergrondkaartgrijs/EPSG:3857/{z}/{x}/{y}.png', {
+                attribution: '<a href="https://creativecommons.org/licenses/by/3.0/nl/">CC BY 3.0</a> Kadaster', // Attributie van kaartmateriaal
+                maxZoom: 18, // Maximale zoom niveau van deze getegelde kaart service
+                minZoom: 8, // Minimale zoom niveau van deze getegelde kaart service
+                tileSize: 256, // Grootte van de tegels die opgehaald worden
+                zoomOffset: 0 // Zoom offset (meestal 0)
+            });
+            var luchtfotoLayer = L.tileLayer('https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wmts/Actueel_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg', {
+                attribution: '<a href="https://creativecommons.org/licenses/by/4.0/deed.nl">CC BY 4.0</a> Kadaster', // Attributie van kaartmateriaal
+                maxZoom: 18, // Maximale zoom niveau van deze getegelde kaart service
+                minZoom: 8, // Minimale zoom niveau van deze getegelde kaart service
+                tileSize: 256, // Grootte van de tegels die opgehaald worden
+                zoomOffset: 0 // Zoom offset (meestal 0)
+            });
+            var hoogspanningskabels = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/liander/elektriciteitsnetten/v1/wms?", {
+                layers: 'hoogspanningskabels', // Laagnaam in de WMS kaart service
+                format: 'image/png', // Bestandsformaat
+                transparent: true, // Of de plaatjes transparant moeten zijn
+                attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0</a> Liander N.V.' // Attributie van kaartmateriaal
+            });
+
+            var cotwee = L.tileLayer.wms("http://geodata.rivm.nl/geoserver/erpub/wms/?", {
+                layers: 'erpub:ERPUB.ER_28_cu_vv_2016_vk5',
+                format: 'image/png',
+                transparent: true,
+                attribution: 'TESt'
+                }
+            );
+
+            var landsgrens = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
+                    layers: 'landsgrens',
+                    format: 'image/png',
+                    transparent: true,
+                    attribution: 'TESt'
+                }
+            );
+
+            var provincies = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
+                    layers: 'provincies',
+                    format: 'image/png',
+                    transparent: true,
+                    attribution: 'TESt'
+                }
+            );
+
+            var gemeenten = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
+                    layers: 'gemeenten',
+                    format: 'image/png',
+                    transparent: true,
+                    attribution: 'TESt'
+                }
+            );
+
+            var plaatsnamen = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bag/wms/v1_1?", {
+                    layers: 'woonplaats',
+                    format: 'image/png',
+                    transparent: true,
+                    attribution: 'TESt'
+                }
+            );
+
+            // Kaart aanmaken
+            var mymap = L.map('mapid', {
+                center: [52.274665, 4.635213], // Coordinaten van het startpunt van de kaart
+                zoom: 18, // Zoomniveau van het startpunt van de kaart
+                layers: [backgroundLayer] // Ingeschakelde kaartlagen
+            });
+
+            // Kaartlagen controls aanmaken
+            var baseMaps = {
+                "BRT Achtergrondkaart": backgroundLayer, // 1e achtergrond laag
+                "PDOK Luchtfoto": luchtfotoLayer // 2e achtergrond laag
+            };
+            var overlayMaps = {
+                "CO2": cotwee,
+                "landsgrens": landsgrens,
+                "provincies": provincies,
+                "gemeenten": gemeenten,
+                "plaatsnamen": plaatsnamen
+            };
+
+            L.control.layers(baseMaps, overlayMaps).addTo(mymap); // Voeg control toe aan kaart object
+
+        </script>
     </body>
 </html>
