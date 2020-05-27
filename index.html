@@ -3,14 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>Leaflet Test Map</title>
-        <!-- Leaflet CSS -->
-        <link rel="stylesheet" href="leaflet.css"/> // Bij Leaflet altijd eerst CSS laden
-        <!-- Leaflet JS -->
-        <script src="leaflet.js"></script> // Bij Leaflet altijd als tweede pas JS laden
+        <!-- Leaflet CSS (Bij Leaflet altijd eerst CSS laden) -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="crossorigin=""/>
+        <!-- Leaflet JS (Bij Leaflet altijd als tweede pas JS laden) -->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="crossorigin=""></script>
     </head>
     <body>
-        // Div om kaart materiaal in te laden
+        <!-- Div om kaart materiaal in te laden -->
         <div id="mapid" style="height: 600px;"></div>
+        <!-- Javascript code om kaart te maken -->
         <script>
             // Achtergrond lagen
             var backgroundLayer = L.tileLayer('https://geodata.nationaalgeoregister.nl/tiles/service/wmts/brtachtergrondkaartgrijs/EPSG:3857/{z}/{x}/{y}.png', {
@@ -33,35 +34,35 @@
                 layers: 'erpub:ERPUB.ER_28_cu_vv_2016_vk5', // Laagnaam in de WMS kaart service
                 format: 'image/png', // Bestandsformaat
                 transparent: true, // Of de plaatjes transparant moeten zijn
-                attribution: 'TESt' // Attributie van kaartmateriaal
+                attribution: '<a href="https://creativecommons.org/publicdomain/mark/1.0/deed.nl">Public Domain Mark 1.0</a> RIVM' // Attributie van kaartmateriaal
                 }
             );
             var landsgrens = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
                     layers: 'landsgrens',
                     format: 'image/png',
                     transparent: true,
-                    attribution: 'TESt'
+                    attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
             var provincies = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
                     layers: 'provincies',
                     format: 'image/png',
                     transparent: true,
-                    attribution: 'TESt'
+                    attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
             var gemeenten = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
                     layers: 'gemeenten',
                     format: 'image/png',
                     transparent: true,
-                    attribution: 'TESt'
+                    attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
             var plaatsnamen = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bag/wms/v1_1?", {
                     layers: 'woonplaats',
                     format: 'image/png',
                     transparent: true,
-                    attribution: 'TESt'
+                    attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
 
