@@ -68,8 +68,8 @@
 
             // Kaart aanmaken
             var mymap = L.map('mapid', {
-                center: [52.274665, 4.635213], // Coordinaten van het startpunt van de kaart
-                zoom: 18, // Zoomniveau van het startpunt van de kaart
+                center: [51.981020, 5.900520], // Coordinaten van het startpunt van de kaart
+                zoom: 12, // Zoomniveau van het startpunt van de kaart
                 layers: [backgroundLayer] // Ingeschakelde kaartlagen
             });
 
@@ -86,8 +86,11 @@
                 "plaatsnamen": plaatsnamen
             };
 
-            // Voeg control toe aan kaart object
+            // Voeg laag control toe aan kaart object
             L.control.layers(baseMaps, overlayMaps).addTo(mymap);
+
+            // Voeg een schaal control toe aan kaart object
+            L.control.scale().addTo(mymap);
         </script>
     </body>
 </html>
