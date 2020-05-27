@@ -58,7 +58,7 @@
                     attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
-            var plaatsnamen = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bag/wms/v1_1?", {
+            var woonplaatsgrenzen = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bag/wms/v1_1?", {
                     layers: 'woonplaats',
                     format: 'image/png',
                     transparent: true,
@@ -83,7 +83,7 @@
                 "landsgrens": landsgrens,
                 "provincies": provincies,
                 "gemeenten": gemeenten,
-                "plaatsnamen": plaatsnamen
+                "woonplaatsgrenzen": woonplaatsgrenzen
             };
 
             // Voeg laag control toe aan kaart object
