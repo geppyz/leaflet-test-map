@@ -14,6 +14,11 @@
         <!-- Javascript code om kaart te maken -->
         <script>
             // Achtergrond lagen
+            var leeg = L.tileLayer('', {
+                maxZoom: 19, // Maximale zoom niveau van deze getegelde kaart service
+                minZoom: 8, // Minimale zoom niveau van deze getegelde kaart service
+                zoomOffset: 0 // Zoom offset (meestal 0)
+            });
             var backgroundLayer = L.tileLayer('https://geodata.nationaalgeoregister.nl/tiles/service/wmts/brtachtergrondkaartgrijs/EPSG:3857/{z}/{x}/{y}.png', {
                 attribution: '<a href="https://creativecommons.org/licenses/by/3.0/nl/">CC BY 3.0</a> Kadaster', // Attributie van kaartmateriaal
                 maxZoom: 19, // Maximale zoom niveau van deze getegelde kaart service
@@ -60,7 +65,8 @@
             // Kaartlagen controls aanmaken
             var baseMaps = {
                 "BRT Achtergrondkaart": backgroundLayer,
-                "PDOK Luchtfoto": luchtfotoLayer
+                "PDOK Luchtfoto": luchtfotoLayer,
+                "Geen achtergrond": leeg
             };
             var overlayMaps = {
                 "Ruimtelijke plannen": plu,
