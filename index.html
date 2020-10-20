@@ -16,14 +16,14 @@
             // Achtergrond lagen
             var backgroundLayer = L.tileLayer('https://geodata.nationaalgeoregister.nl/tiles/service/wmts/brtachtergrondkaartgrijs/EPSG:3857/{z}/{x}/{y}.png', {
                 attribution: '<a href="https://creativecommons.org/licenses/by/3.0/nl/">CC BY 3.0</a> Kadaster', // Attributie van kaartmateriaal
-                maxZoom: 18, // Maximale zoom niveau van deze getegelde kaart service
+                maxZoom: 19, // Maximale zoom niveau van deze getegelde kaart service
                 minZoom: 8, // Minimale zoom niveau van deze getegelde kaart service
                 tileSize: 256, // Grootte van de tegels die opgehaald worden
                 zoomOffset: 0 // Zoom offset (meestal 0)
             });
             var luchtfotoLayer = L.tileLayer('https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wmts/Actueel_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg', {
                 attribution: '<a href="https://creativecommons.org/licenses/by/4.0/deed.nl">CC BY 4.0</a> Kadaster',
-                maxZoom: 18,
+                maxZoom: 19,
                 minZoom: 8,
                 tileSize: 256,
                 zoomOffset: 0
@@ -34,6 +34,8 @@
                     layers: 'Enkelbestemming',
                     format: 'image/png',
                     transparent: true,
+                    minZoom: 17,
+                    maxZoom: 19,
                     attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
@@ -42,6 +44,8 @@
                     layers: 'kadastralekaart',
                     format: 'image/png',
                     transparent: true,
+                    minZoom: 18,
+                    maxZoom: 19,
                     attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
