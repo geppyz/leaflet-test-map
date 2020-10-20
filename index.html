@@ -30,36 +30,16 @@
             });
 
             // Voorgrond lagen
-            var cotwee = L.tileLayer.wms("http://geodata.rivm.nl/geoserver/erpub/wms/?", {
-                layers: 'erpub:ERPUB.ER_28_cu_vv_2016_vk5', // Laagnaam in de WMS kaart service
-                format: 'image/png', // Bestandsformaat
-                transparent: true, // Of de plaatjes transparant moeten zijn
-                attribution: '<a href="https://creativecommons.org/publicdomain/mark/1.0/deed.nl">Public Domain Mark 1.0</a> RIVM' // Attributie van kaartmateriaal
-                }
-            );
-            var landsgrens = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
-                    layers: 'landsgrens',
+            var plu = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/plu/wms?", {
+                    layers: 'Enkelbestemming',
                     format: 'image/png',
                     transparent: true,
                     attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
                 }
             );
-            var provincies = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
-                    layers: 'provincies',
-                    format: 'image/png',
-                    transparent: true,
-                    attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
-                }
-            );
-            var gemeenten = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wms?", {
-                    layers: 'gemeenten',
-                    format: 'image/png',
-                    transparent: true,
-                    attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
-                }
-            );
-            var woonplaatsgrenzen = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/bag/wms/v1_1?", {
-                    layers: 'woonplaats',
+            var dkk = L.tileLayer.wms("https://geodata.nationaalgeoregister.nl/kadastralekaart/wms/v4_0?", {
+                    //layers: 'KadastraleGrens,Perceel,Bebouwing',
+                    layers: 'kadastralekaart',
                     format: 'image/png',
                     transparent: true,
                     attribution: '<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.nl">CC0 1.0</a> PDOK'
@@ -68,9 +48,9 @@
 
             // Kaart aanmaken
             var mymap = L.map('mapid', {
-                center: [51.981020, 5.900520], // Coordinaten van het startpunt van de kaart
-                zoom: 12, // Zoomniveau van het startpunt van de kaart
-                layers: [backgroundLayer] // Ingeschakelde kaartlagen
+                center: [51.981020, 5.903820], // Coordinaten van het startpunt van de kaart
+                zoom: 18, // Zoomniveau van het startpunt van de kaart
+                layers: [backgroundLayer,plu,dkk] // Ingeschakelde kaartlagen
             });
 
             // Kaartlagen controls aanmaken
@@ -79,11 +59,8 @@
                 "PDOK Luchtfoto": luchtfotoLayer
             };
             var overlayMaps = {
-                "CO2": cotwee,
-                "landsgrens": landsgrens,
-                "provincies": provincies,
-                "gemeenten": gemeenten,
-                "woonplaatsgrenzen": woonplaatsgrenzen
+                "Ruimtelijke plannen": plu,
+                "Kadastrale kaart": dkk
             };
 
             // Voeg laag control toe aan kaart object
