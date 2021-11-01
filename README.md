@@ -9,7 +9,7 @@ Voorgrond lagen maken gebruik van het WMS protocol.
 https://geppyz.github.io/leaflet-test-map/
 
 ## Afhankelijkheden
-- Leaflet 1.6.0
+- Leaflet 1.7.1
 
 ## Licentie
 MIT
